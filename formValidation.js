@@ -57,10 +57,12 @@ $(document).ready(function() {
       */
       var $form = $(this).closest('form'), //form variable
       $group = $(this).closest('.gt-input-group'), //div gt-input-group
+      $input = $group.find('input.form-control'),
       $button = $(document).find('.submit'), //submit button (use document cause this cant find it)
 			$icon = $group.find('span'), //icon (success,error)
-      first_time = false,
 			state = false; //default state
+
+      var first_time = false;
 
       /*
         If is a list
@@ -216,6 +218,8 @@ $(document).ready(function() {
   		else if (state)
       {
   				$group.removeClass('has-error');
+          $input.tooltip('destroy')
+                .removeAttr("title");
   				$group.addClass('has-success');
   				$icon.attr('class', 'glyphicon glyphicon-ok form-control-feedback');
   		}
@@ -225,6 +229,8 @@ $(document).ready(function() {
       */
       else if(!state){
           $group.removeClass('has-success');
+          $input.attr("title","Something going wrong")
+                .tooltip('show');
           $group.addClass('has-error');
   				$icon.attr('class', 'glyphicon glyphicon-remove form-control-feedback');
   		}
