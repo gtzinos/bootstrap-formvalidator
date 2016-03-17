@@ -1,4 +1,12 @@
+
 $(document).ready(function() {
+    /*
+      On focus change
+      hide other tooltips
+    */
+    $("gt-input-group").on("mouseout",function() {
+       $("[data-toggle='tooltip']").tooltip("hide");
+    });
     /*
       When window loaded
     */
@@ -228,10 +236,29 @@ $(document).ready(function() {
         then add an error class icon
       */
       else if(!state){
+          /*
+            Remove success class (error-icon)
+          */
           $group.removeClass('has-success');
-          $input.attr("title","Something going wrong")
-                .tooltip('show');
+          /*
+            If attr error-message not initialized
+          */
+          if(!$input.attr("error-message")) $input.attr("error-message","Wrong input value.");
+          /*
+            Else error-message initialized
+          */
+          else $input.attr("title",$input.attr("error-message"));
+          /*
+            If tooltip is hidden
+          */
+          $input.tooltip('show');
+          /*
+            Add error class (error-icon)
+          */
           $group.addClass('has-error');
+          /*
+            Add error icon
+          */
   				$icon.attr('class', 'glyphicon glyphicon-remove form-control-feedback');
   		}
       /*
