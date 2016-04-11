@@ -12,7 +12,6 @@ $(document).ready(function() {
       If a key pressed (Keyup event)
       in a gt-input-group class then
     */
-
     $('.gt-input-group input, .gt-input-group textarea, .gt-input-group checkbox, .gt-input-group select').on('keyup change focus', function() {
       /*
         Initialize variables (Form, div(gt-input-group), button(submit form), span(icon error,success))
@@ -34,17 +33,17 @@ $(document).ready(function() {
         /*
           If we can find a button with attribute name = form.name
         */
-        if(button.filter("[form='" + form.prop("name") + "']").length)
+        if(button.filter("[form='" + form.prop("id") + "']").length)
         {
-          button = button.filter("[form='" + form.prop("name") + "']");
+          button = button.filter("[form='" + form.prop("id") + "']");
         }
       }
       /*
         Search button from the whole document
       */
-      else if($(document).find(".gt-submit,input[type='submit'],[type='button'],button").filter("[form='" + form.prop("name") + "']").length > 0)
+      else if($(document).find(".gt-submit,input[type='submit'],[type='button'],button").filter("[form='" + form.prop("id") + "']").length > 0)
       {
-        button = $(document).find(".gt-submit,input[type='submit'],[type='button'],button").filter("[form='" + form.prop("name") + "']");
+        button = $(document).find(".gt-submit,input[type='submit'],[type='button'],button").filter("[form='" + form.prop("id") + "']");
       }
       /*
         If something go wrong
@@ -59,7 +58,6 @@ $(document).ready(function() {
       {
           input.attr("data-placement","top");
       }
-
       /*
         If is a list
         and selected index was the default one
