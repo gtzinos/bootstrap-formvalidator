@@ -249,6 +249,16 @@ function validate(item)
   {
     state = $(item).val().localeCompare($(document).find('#'+group.data('not-equal')).val()) != 0 ? true : false;
   }
+  /*
+    If have a required checkbox
+  */
+  if(group.data('required-checkbox') && !first_time)
+  {
+    if(!$(group.data('required-checkbox')).prop("checked"))
+    {
+      first_time = true;
+    }
+  }
 
   /*
     If it was the first time
