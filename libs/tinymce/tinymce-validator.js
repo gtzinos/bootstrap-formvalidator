@@ -1,6 +1,5 @@
 $(document).ready(function(e) {
 
-
 tinymce.init({
       selector: "textarea.mce-editor",
       theme: 'modern',
@@ -29,7 +28,6 @@ tinymce.init({
           }
       },
       setup : function(ed) {
-
         ed.on("change focus keyup", function(e){
             /*
               Initialize variables (Form, div(gt-input-group), button(submit form), span(icon error,success))
@@ -79,7 +77,6 @@ tinymce.init({
             }
 
             var text = tinymce.activeEditor.getContent({format : 'text'});
-
             /*
               If is a list
               and selected index was the default one
@@ -94,7 +91,7 @@ tinymce.init({
               This is for first time
             */
 
-            else if(text.length == 0)
+            else if(text.length == 1)
             {
               first_time = true;
             }
@@ -233,6 +230,7 @@ tinymce.init({
             {
               group.removeClass('has-error');
               group.removeClass('has-success');
+              group.children().css("background-color","");
               icon.removeClass('glyphicon glyphicon-ok form-control-feedback');
               icon.removeClass('glyphicon glyphicon-remove form-control-feedback');
             }
@@ -240,7 +238,7 @@ tinymce.init({
               If state was true
               then add a success class icon
             */
-        		else if (state)
+        		else if (state && !first_time)
             {
         				group.removeClass('has-error');
                 icon.removeClass('glyphicon glyphicon-remove form-control-feedback');
